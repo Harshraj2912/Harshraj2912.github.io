@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FactsWithHRS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-light: #f5f5f5;
@@ -12,6 +12,7 @@
       --text-light: #333;
       --text-dark: #f5f5f5;
       --accent: #4CAF50;
+      --glow-yellow: rgba(255, 255, 100, 0.6);
     }
 
     body {
@@ -20,6 +21,9 @@
       background-color: var(--bg-light);
       color: var(--text-light);
       transition: background-color 0.3s, color 0.3s;
+      background-image: url('background.jpg'); /* Optional background image */
+      background-size: cover;
+      background-position: center;
     }
 
     .dark-mode {
@@ -29,7 +33,20 @@
 
     header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--glow-yellow);
     }
 
     h1 {
@@ -40,6 +57,22 @@
     p.description {
       font-size: 1.1rem;
       color: #666;
+    }
+
+    .youtube-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #FF0000;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .youtube-link:hover {
+      background-color: #cc0000;
     }
 
     .fact-card {
@@ -120,23 +153,31 @@
 <body>
   <button class="toggle-mode" onclick="toggleDarkMode()">🌓</button>
   <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="FactsWithHRS Logo" class="logo" />
+    </div>
     <h1>FactsWithHRS</h1>
     <p class="description">Discover random facts that surprise and delight!</p>
+    <a href="https://youtube.com/@factswithhrs?si=nZlrSTlYRdEqVbUD" target="_blank" class="youtube-link">📺 Visit our YouTube Channel</a>
   </header>
+
   <div class="fact-card">
-    <div class="fact-icon">
-      🌌
-    </div>
+    <div class="fact-icon">🌌</div>
     <div class="fact-text" id="fact">
       The Milky Way galaxy will collide with the Andromeda galaxy in about 4.5 billion years.
     </div>
   </div>
+
   <div class="buttons">
-    <button onclick="getRandomFact()">Random Fact</button> <button onclick="getNextFact()">Next</button> <button onclick="copyFact()">Copy Fact</button>
+    <button onclick="getRandomFact()">Random Fact</button>
+    <button onclick="getNextFact()">Next</button>
+    <button onclick="copyFact()">Copy Fact</button>
   </div>
+
   <footer>
     Made with ♥ by HRS
   </footer>
+
   <script>
     const facts = [
       { text: "Honey never spoils.", icon: "🍯" },
