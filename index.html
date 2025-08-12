@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FactsWithHRS — Quick Facts</title>
+  <meta name="description" content="FactsWithHRS — quick interesting facts. Visit the YouTube channel for videos." />
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;padding:24px;background:#f7f8fb}
+    .card{max-width:720px;width:100%;background:#fff;padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(20,20,60,0.08);text-align:center}
+    h1{margin:0 0 6px;font-size:28px}
+    p.lead{margin:6px 0 18px;color:#555}
+    #fact{font-size:20px;line-height:1.4;margin:18px 0;padding:18px;border-radius:8px;background:#f1f4ff}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    button{padding:10px 16px;border:0;border-radius:8px;cursor:pointer;font-weight:600}
+    .btn-primary{background:#2b6df6;color:white}
+    .btn-ghost{background:#eef2ff;color:#25304a}
+    footer{margin-top:14px;color:#666;font-size:13px}
+    a.ch{color:#2b6df6;text-decoration:none;font-weight:600}
+    @media(max-width:420px){#fact{font-size:18px}}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>FactsWithHRS</h1>
+    <p class="lead">Short, shareable facts. From the YouTube channel — <a class="ch" id="ytLink" href="#" target="_blank">Visit channel</a></p>
+
+    <div id="fact">Click <strong>Random Fact</strong> to start.</div>
+
+    <div class="controls">
+      <button id="randBtn" class="btn-primary">Random Fact</button>
+      <button id="nextBtn" class="btn-ghost">Next</button>
+      <button id="copyBtn" class="btn-ghost">Copy Fact</button>
+    </div>
+
+    <footer>Made with ♥ by HRS — edit facts in <code>facts</code> array below.</footer>
+  </div>
+
+  <script>
+    const channelUrl = "https://youtube.com/@FactsWithHRS?si=nZlrSTlYRdEqVbUD";
+    document.getElementById('ytLink').href = channelUrl;
+
+    const facts = [
+      "Honey never spoils — archaeologists found edible honey in ancient Egyptian tombs.",
+      "Bananas are berries, but strawberries are not.",
+      "A single cloud can weigh more than a million kilograms.",
+      "Octopuses have three hearts.",
+      "Wombat poop is cube-shaped.",
+      "A day on Venus is longer than a year on Venus.",
+      "There are more possible chess games than atoms in the known universe.",
+      "Oxford University is older than the Aztecs.",
+      "Sharks existed before trees on Earth.",
+      "Some metals like sodium react explosively with water.",
+      "There’s a species of jellyfish that is biologically immortal.",
+      "Humans share ~50% DNA with bananas.",
+      "Venus rotates clockwise — opposite of most planets.",
+      "A group of flamingos is called a 'flamboyance'.",
+      "Scotland’s national animal is the unicorn.",
+      "Cleopatra lived closer in time to the moon landing than to the Great Pyramid.",
+      "Sloths can hold their breath longer than dolphins—up to 40 minutes.",
+      "Mosquitoes are the deadliest animals — they spread diseases.",
+      "The Eiffel Tower can be 15 cm taller in summer due to thermal expansion.",
+      "A day on Mercury is longer than its year."
+    ];
+
+    let idx = -1;
+    function showRandom(){
+      idx = Math.floor(Math.random() * facts.length);
+      document.getElementById('fact').innerText = facts[idx];
+    }
+    function showNext(){
+      idx = (idx + 1) % facts.length;
+      document.getElementById('fact').innerText = facts[idx];
+    }
+
+    document.getElementById('randBtn').addEventListener('click', showRandom);
+    document.getElementById('nextBtn').addEventListener('click', showNext);
+    document.getElementById('copyBtn').addEventListener('click', ()=>{
+      const text = document.getElementById('fact').innerText;
+      if (!text) return alert('No fact to copy!');
+      navigator.clipboard?.writeText(text).then(()=>alert('Copied!'), ()=>alert('Copy failed'));
+    });
+  </script>
+</body>
+</html>
+
