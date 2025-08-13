@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .search-container {
+            width: 80%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+        }
+        .fact-box {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search for facts...">
+        <button id="search-button">Search</button>
+    </div>
+    <div class="fact-box" id="fact-box">
+        <h2 id="fact-topic"></h2>
+        <p id="fact-description"></p>
+    </div>
+
+    <script>
+        const facts = [
+            { topic: "Honey", description: "Honey never spoils." },
+            { topic: "Octopuses", description: "Octopuses have three hearts." },
+            { topic: "Bananas", description: "Bananas are berries, but strawberries aren't." },
+            // Add more facts here...
+        ];
+
+        document.getElementById("search-button").addEventListener("click", searchFact);
+
+        function searchFact() {
+            const searchInput = document.getElementById("search-input").value.toLowerCase();
+            const factBox = document.getElementById("fact-box");
+            const factTopic = document.getElementById("fact-topic");
+            const factDescription = document.getElementById("fact-description");
+
+            const fact = facts.find((fact) => fact.topic.toLowerCase().includes(searchInput));
+
+            if (fact) {
+                factTopic.textContent = fact.topic;
+                factDescription.textContent = fact.description;
+                factBox.style.display = "block";
+            } else {
+                factBox.style.display = "none";
+                alert("No facts found!");
+            }
+        }
+    </script>
+</body>
+</html>
